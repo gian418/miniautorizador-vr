@@ -24,6 +24,5 @@ public class CartaoServiceImpl implements CartaoService {
             log.error("Erro ao salvar o cartão", e);
             throw new SalvarCartaoException(cartao);
         }
-
     }
 }

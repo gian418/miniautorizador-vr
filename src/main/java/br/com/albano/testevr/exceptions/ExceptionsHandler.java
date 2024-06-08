@@ -23,9 +23,15 @@ public class ExceptionsHandler {
     }
 
     @ExceptionHandler(CartaoNaoEncontradoException.class)
-    public ResponseEntity<StandardError> cartaoNaoEncontrado(CartaoNaoEncontradoException e) {
+    public ResponseEntity<Void> cartaoNaoEncontrado(CartaoNaoEncontradoException e) {
         log.error("Cartão não encontrado", e);
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(TransacaoFalhouException.class)
+    public ResponseEntity<String> falhaTransacao(TransacaoFalhouException e) {
+        log.error("Houve uma falha durante a transação do cartão", e);
+        return ResponseEntity.unprocessableEntity().body(e.getMessage());
     }
 
     @ExceptionHandler(SalvarCartaoException.class)

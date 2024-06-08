@@ -46,11 +46,13 @@ public class AppSecurityConfig {
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
         http.authorizeRequests(authz -> {
                     authz.requestMatchers("/cartoes/**").authenticated();
+                    authz.requestMatchers("/transacoes/**").authenticated();
                     authz.anyRequest().permitAll();
                 }).authenticationManager(authenticationManager)
                 .httpBasic(withDefaults());
         http.csrf(csrf -> csrf
                 .ignoringRequestMatchers("/cartoes/**")
+                .ignoringRequestMatchers("/transacoes/**")
                 .csrfTokenRepository(new CookieCsrfTokenRepository())).sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.NEVER));
         return http.build();
     }

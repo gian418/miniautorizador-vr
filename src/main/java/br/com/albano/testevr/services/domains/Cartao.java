@@ -7,6 +7,7 @@ import br.com.albano.testevr.repositories.enums.TipoTransacao;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,7 @@ public class Cartao {
         var cartaoSaldoEntity = new CartaoSaldoEntity();
         cartaoSaldoEntity.setSaldo(cartaoTransacaoEntity.getValor());
         cartaoSaldoEntity.setCartao(cartaoTransacaoEntity.getCartao());
+        cartaoSaldoEntity.setDataCadastro(LocalDateTime.now());
         return cartaoSaldoEntity;
     }
 }
