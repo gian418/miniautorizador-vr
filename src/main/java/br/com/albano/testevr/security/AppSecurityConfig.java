@@ -31,33 +31,27 @@ public class AppSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-
         UserDetails user = User.builder()
                 .username(userName)
                 .password(passwordEncoder().encode(password))
                 .roles("USER")
                 .build();
-
         return new InMemoryUserDetailsManager(user);
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
         AuthenticationManager authenticationManager = authenticationManagerBuilder.build();
-
         http.authorizeRequests(authz -> {
                     authz.requestMatchers("/cartoes/**").authenticated();
                     authz.anyRequest().permitAll();
                 }).authenticationManager(authenticationManager)
                 .httpBasic(withDefaults());
-
         http.csrf(csrf -> csrf
                 .ignoringRequestMatchers("/cartoes/**")
                 .csrfTokenRepository(new CookieCsrfTokenRepository())).sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.NEVER));
-
         return http.build();
     }
 
