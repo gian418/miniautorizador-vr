@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -31,5 +32,14 @@ public class CartaoEntity {
     @CreatedDate
     @Column(name = "data_cadastro", updatable = false, nullable = false)
     private LocalDateTime dataCadastro;
+
+    @Column(name = "active", nullable = false)
+    private boolean active = true;
+
+    @OneToOne(mappedBy = "cartao", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, optional = false)
+    private CartaoSaldoEntity cartaoSaldo;
+
+    @OneToMany(mappedBy = "cartao", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<CartaoTransacaoEntity> historicoTransacoes;
 
 }
