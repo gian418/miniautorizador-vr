@@ -1,24 +1,19 @@
 package br.com.albano.testevr.services;
 
 import br.com.albano.testevr.exceptions.TransacaoFalhouException;
-import br.com.albano.testevr.repositories.CartaoRepository;
-import br.com.albano.testevr.repositories.CartaoSaldoRepository;
 import br.com.albano.testevr.repositories.CartaoTransacaoRepository;
 import br.com.albano.testevr.repositories.enums.TipoTransacao;
 import br.com.albano.testevr.services.domains.Transacao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import static br.com.albano.testevr.services.enums.TipoFalhaTransacao.CARTAO_INEXISTENTE;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
