@@ -99,10 +99,10 @@ public class CartaoServiceTest {
         cartao.setSenha("1234");
         cartao.setNumero("6549873025634502");
 
+        cartaoService.salvar(cartao);
         assertThrows(
                 SalvarCartaoException.class,
                 () -> {
-                    cartaoService.salvar(cartao);
                     cartaoService.salvar(cartao);
                 }
         );
