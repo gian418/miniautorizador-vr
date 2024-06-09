@@ -49,10 +49,11 @@ public class TransacaoServiceImpl implements TransacaoService {
         validarSenha(cartaoEntity.getSenha(), transacao.getSenha());
 
         try {
-            var cartaoSaldoEntity = cartaoEntity.getCartaoSaldo();
+            var cartaoSaldoEntity = cartaoSaldoRepository.findByNumeroCartao(transacao.getNumeroCartao())
+                    .orElseThrow(() -> new TransacaoFalhouException(CARTAO_INEXISTENTE.name()));
             entityManager.lock(cartaoSaldoEntity, LockModeType.PESSIMISTIC_WRITE);
 
-            var saldoFinal = validarSaldo(cartaoEntity.getCartaoSaldo().getSaldo(), transacao.getValor());
+            var saldoFinal = validarSaldo(cartaoSaldoEntity.getSaldo(), transacao.getValor());
             cartaoSaldoEntity.setSaldo(saldoFinal);
             cartaoSaldoEntity.setUltimaAtualizacao(LocalDateTime.now());
 

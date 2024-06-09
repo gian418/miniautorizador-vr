@@ -26,7 +26,7 @@ public class CartaoTransacaoEntity {
     @JoinColumn(name = "cartao_id", nullable = false)
     private CartaoEntity cartao;
 
-    @Column(name = "data_transacao", nullable = false, updatable = false)
+    @Column(name = "data_transacao", nullable = false)
     private LocalDateTime dataTransacao;
 
     @Column(name = "valor", nullable = false)

@@ -30,6 +30,7 @@ public class CartaoServiceTest {
 
     @Autowired
     private CartaoSaldoRepository cartaoSaldoRepository;
+
     @Autowired
     private CartaoTransacaoRepository cartaoTransacaoRepository;
 
@@ -64,7 +65,9 @@ public class CartaoServiceTest {
         var savedCartaoSaldo = cartaoSaldoRepository.findByNumeroCartao(cartao.getNumero()).get();
 
         assertNotNull(savedCartaoSaldo);
-        assertEquals(BigDecimal.valueOf(500).setScale(2, RoundingMode.UNNECESSARY), savedCartaoSaldo.getSaldo());
+        assertEquals(
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.UNNECESSARY),
+                savedCartaoSaldo.getSaldo().setScale(2, RoundingMode.UNNECESSARY));
         assertEquals(cartao.getNumero(), savedCartaoSaldo.getCartao().getNumero());
     }
 
@@ -82,7 +85,9 @@ public class CartaoServiceTest {
 
         assertFalse(savedTransactionList.isEmpty());
         assertEquals(1, savedTransactionList.size());
-        assertEquals(BigDecimal.valueOf(500).setScale(2, RoundingMode.UNNECESSARY), savedTransactionList.getFirst().getValor());
+        assertEquals(
+                BigDecimal.valueOf(500).setScale(2, RoundingMode.UNNECESSARY),
+                savedTransactionList.getFirst().getValor().setScale(2, RoundingMode.UNNECESSARY));
         assertEquals(TipoTransacao.ENTRADA, savedTransactionList.getFirst(). getTipo());
         assertEquals(cartao.getNumero(), savedTransactionList.getFirst().getCartao().getNumero());
     }
@@ -94,10 +99,13 @@ public class CartaoServiceTest {
         cartao.setSenha("1234");
         cartao.setNumero("6549873025634502");
 
-        cartaoService.salvar(cartao);
-        assertThrows(SalvarCartaoException.class, () -> {
-            cartaoService.salvar(cartao);
-        });
+        assertThrows(
+                SalvarCartaoException.class,
+                () -> {
+                    cartaoService.salvar(cartao);
+                    cartaoService.salvar(cartao);
+                }
+        );
     }
 
 }

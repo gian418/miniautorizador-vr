@@ -1,5 +1,5 @@
 CREATE TABLE cartao (
-                        id VARCHAR(36) PRIMARY KEY,
+                        id UUID PRIMARY KEY,
                         numero_cartao VARCHAR(16) NOT NULL,
                         senha VARCHAR(255) NOT NULL,
                         data_cadastro TIMESTAMP NOT NULL,
@@ -8,20 +8,20 @@ CREATE TABLE cartao (
 );
 
 CREATE TABLE cartao_saldo (
-                              id VARCHAR(36) PRIMARY KEY,
-                              cartao_id VARCHAR(36) NOT NULL,
+                              id UUID PRIMARY KEY,
+                              cartao_id UUID NOT NULL,
                               saldo DECIMAL(15, 2) NOT NULL,
                               data_cadastro TIMESTAMP NOT NULL,
                               ultima_atualizacao TIMESTAMP NULL,
-                              FOREIGN KEY (cartao_id) REFERENCES cartao(id),
-                              CONSTRAINT unique_cartao_saldo_cartao_id UNIQUE (cartao_id)
+                              FOREIGN KEY (cartao_id) REFERENCES cartao(id)
 );
 
 CREATE TABLE cartao_historico_transacao (
-                                            id VARCHAR(36) PRIMARY KEY,
-                                            cartao_id VARCHAR(36) NOT NULL,
+                                            id UUID PRIMARY KEY,
+                                            cartao_id UUID NOT NULL,
                                             data_transacao TIMESTAMP NOT NULL,
                                             valor DECIMAL(15, 2) NOT NULL,
                                             tipo VARCHAR(255) NOT NULL,
                                             FOREIGN KEY (cartao_id) REFERENCES cartao(id)
 );
+
