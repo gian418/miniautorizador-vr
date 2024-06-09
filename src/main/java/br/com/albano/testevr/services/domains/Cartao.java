@@ -41,6 +41,7 @@ public class Cartao {
         var cartaoEntity = new CartaoEntity();
         cartaoEntity.setNumero(this.numero);
         cartaoEntity.setSenha(this.senha);
+        cartaoEntity.setDataCadastro(LocalDateTime.now());
         return cartaoEntity;
     }
 
@@ -49,6 +50,7 @@ public class Cartao {
         cartaoTransacaoEntity.setValor(SALDO_INICIAL);
         cartaoTransacaoEntity.setTipo(TipoTransacao.ENTRADA);
         cartaoTransacaoEntity.setCartao(cartaoEntity);
+        cartaoTransacaoEntity.setDataTransacao(LocalDateTime.now());
         return cartaoTransacaoEntity;
     }
 

@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,7 +28,6 @@ public class CartaoEntity {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @CreatedDate
     @Column(name = "data_cadastro", updatable = false, nullable = false)
     private LocalDateTime dataCadastro;
 

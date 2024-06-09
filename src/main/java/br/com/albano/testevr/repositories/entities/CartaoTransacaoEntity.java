@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -27,7 +26,6 @@ public class CartaoTransacaoEntity {
     @JoinColumn(name = "cartao_id", nullable = false)
     private CartaoEntity cartao;
 
-    @CreatedDate
     @Column(name = "data_transacao", nullable = false, updatable = false)
     private LocalDateTime dataTransacao;
 

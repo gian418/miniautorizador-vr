@@ -60,6 +60,7 @@ public class TransacaoServiceImpl implements TransacaoService {
             transacaoEntity.setTipo(TipoTransacao.SAIDA);
             transacaoEntity.setValor(transacao.getValor());
             transacaoEntity.setCartao(cartaoEntity);
+            transacaoEntity.setDataTransacao(LocalDateTime.now());
 
             cartaoTransacaoRepository.save(transacaoEntity);
             cartaoSaldoRepository.save(cartaoSaldoEntity);
