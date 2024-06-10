@@ -10,7 +10,7 @@ public class SalvarCartaoException extends RuntimeException {
     private final CartaoDTO cartaoDTO;
 
     public SalvarCartaoException(Cartao cartao) {
-        super();
+        super("Erro ao salvar o cartão");
         this.cartaoDTO = CartaoDTO.domainToDto(cartao);
     }
 

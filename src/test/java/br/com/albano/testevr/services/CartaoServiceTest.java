@@ -1,5 +1,6 @@
 package br.com.albano.testevr.services;
 
+import br.com.albano.testevr.config.AbstractWebConfigTest;
 import br.com.albano.testevr.exceptions.SalvarCartaoException;
 import br.com.albano.testevr.repositories.CartaoRepository;
 import br.com.albano.testevr.repositories.CartaoSaldoRepository;
@@ -9,8 +10,6 @@ import br.com.albano.testevr.services.domains.Cartao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -18,9 +17,7 @@ import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-public class CartaoServiceTest {
+public class CartaoServiceTest extends AbstractWebConfigTest {
 
     @Autowired
     CartaoService cartaoService;

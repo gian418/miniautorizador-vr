@@ -4,14 +4,16 @@ import br.com.albano.testevr.repositories.entities.CartaoEntity;
 import br.com.albano.testevr.repositories.entities.CartaoSaldoEntity;
 import br.com.albano.testevr.repositories.entities.CartaoTransacaoEntity;
 import br.com.albano.testevr.repositories.enums.TipoTransacao;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 public class Cartao {
 
     private static BigDecimal SALDO_INICIAL = BigDecimal.valueOf(500);

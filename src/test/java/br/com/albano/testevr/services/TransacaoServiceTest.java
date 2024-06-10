@@ -1,5 +1,6 @@
 package br.com.albano.testevr.services;
 
+import br.com.albano.testevr.config.AbstractWebConfigTest;
 import br.com.albano.testevr.exceptions.TransacaoFalhouException;
 import br.com.albano.testevr.repositories.CartaoTransacaoRepository;
 import br.com.albano.testevr.repositories.enums.TipoTransacao;
@@ -7,8 +8,6 @@ import br.com.albano.testevr.services.domains.Transacao;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -16,9 +15,7 @@ import java.math.RoundingMode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest
-@ActiveProfiles("test")
-public class TransacaoServiceTest {
+public class TransacaoServiceTest extends AbstractWebConfigTest {
 
     @Autowired
     TransacaoService transacaoService;

@@ -49,8 +49,7 @@ public class TransacaoServiceImpl implements TransacaoService {
         validarSenha(cartaoEntity.getSenha(), transacao.getSenha());
 
         try {
-            var cartaoSaldoEntity = cartaoSaldoRepository.findByNumeroCartao(transacao.getNumeroCartao())
-                    .orElseThrow(() -> new TransacaoFalhouException(CARTAO_INEXISTENTE.name()));
+            var cartaoSaldoEntity = cartaoSaldoRepository.findByNumeroCartao(transacao.getNumeroCartao()).get();
             entityManager.lock(cartaoSaldoEntity, LockModeType.PESSIMISTIC_WRITE);
 
             var saldoFinal = validarSaldo(cartaoSaldoEntity.getSaldo(), transacao.getValor());

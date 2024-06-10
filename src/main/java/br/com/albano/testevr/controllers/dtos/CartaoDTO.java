@@ -4,9 +4,11 @@ import br.com.albano.testevr.services.domains.Cartao;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
+import lombok.*;
 
-@Data
+
+@Getter
+@Setter
 public class CartaoDTO {
 
     @NotEmpty(message = "É necessário informar o número do cartão")
