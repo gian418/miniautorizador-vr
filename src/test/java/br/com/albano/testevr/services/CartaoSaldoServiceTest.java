@@ -27,7 +27,6 @@ public class CartaoSaldoServiceTest extends AbstractWebConfigTest {
         cartao.setSenha("1234");
         cartao.setNumero("6549873025634503");
         cartaoRepository.save(cartao.toEntity());
-        cartaoRepository.findByNumero("6549873025634503");
 
         var saldo = cartaoSaldoService.getSaldo("6549873025634503");
         var saldoExpected = BigDecimal.valueOf(500).setScale(2, RoundingMode.UNNECESSARY);

@@ -58,7 +58,6 @@ public class CartaoServiceTest extends AbstractWebConfigTest {
         cartao.setNumero("6549873025634501");
 
         cartaoService.salvar(cartao);
-        cartaoRepository.findByNumero(cartao.getNumero()).get();
         var savedCartaoSaldo = cartaoSaldoRepository.findByNumeroCartao(cartao.getNumero()).get();
 
         assertNotNull(savedCartaoSaldo);
@@ -77,7 +76,6 @@ public class CartaoServiceTest extends AbstractWebConfigTest {
         cartao.setNumero("6549873025634501");
 
         cartaoService.salvar(cartao);
-        cartaoRepository.findByNumero(cartao.getNumero()).get();
         var savedTransactionList = cartaoTransacaoRepository.findByCartaoNumero(cartao.getNumero());
 
         assertFalse(savedTransactionList.isEmpty());

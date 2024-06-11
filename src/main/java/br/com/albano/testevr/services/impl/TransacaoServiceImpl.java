@@ -12,8 +12,6 @@ import br.com.albano.testevr.repositories.entities.CartaoTransacaoEntity;
 import br.com.albano.testevr.repositories.enums.TipoTransacao;
 import br.com.albano.testevr.services.TransacaoService;
 import br.com.albano.testevr.services.domains.Transacao;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.LockModeType;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +34,6 @@ public class TransacaoServiceImpl implements TransacaoService {
     @Autowired
     private CartaoTransacaoRepository cartaoTransacaoRepository;
 
-    @Autowired
-    private EntityManager entityManager;
 
     @Override
     @Transactional
@@ -49,7 +45,6 @@ public class TransacaoServiceImpl implements TransacaoService {
 
         try {
             var cartaoSaldoEntity = cartaoSaldoRepository.findByNumeroCartao(transacao.getNumeroCartao()).get();
-            entityManager.lock(cartaoSaldoEntity, LockModeType.PESSIMISTIC_WRITE);
 
             var saldoFinal = validarSaldo(cartaoSaldoEntity.getSaldo(), transacao.getValor());
             cartaoSaldoEntity.setSaldo(saldoFinal);
