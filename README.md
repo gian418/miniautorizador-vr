@@ -36,7 +36,7 @@ As autenticações são do tipo BASIC.
 ```
 
 ### Possíveis respostas:
-#### Sucesso: Status code 201 e no body o mesmo json do request
+#### Sucesso
 Status code `201`
 ```json
 {
@@ -62,9 +62,9 @@ Obs: {numeroCartao} deve ser substituído pelo numero do cartão.
 
 ### Possíveis respostas:
 #### Sucesso
-Http Status `201`
-Body `495.15`
+- Http Status `201`
+- Body `495.15`
 
 #### Cartão não existe
-Http Status `404`
-Sem body
+- Http Status `404`
+- Sem body
