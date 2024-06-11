@@ -96,7 +96,6 @@ Obs: {numeroCartao} deve ser substituído pelo numero do cartão.
 ## Realizar uma transação
 
 **[POST]** `http://localhost:8080/transacoes`
-**Body:**
 ```json
 { 
     "numeroCartao": "6549873025634501",
