@@ -35,6 +35,36 @@ As autenticações são do tipo BASIC.
 }
 ```
 
-Respostas:
-- Sucesso: Http status 201 e no body o mesmo json do request
-- Cartão já existente: Http status 422 e no body o mesmo json do request
+### Possíveis respostas:
+#### Sucesso: Status code 201 e no body o mesmo json do request
+Status code `201`
+```json
+{
+    "senha": "123456",
+    "numeroCartao": "6549873025123123"
+}
+```
+
+#### Cartão já existente
+Status code `422`
+```json
+{
+    "senha": "123456",
+    "numeroCartao": "6549873025123123"
+}
+```
+
+## Consultar Saldo
+
+**[GET]** `http://localhost:8080/cartoes/{numeroCartao}`
+
+Obs: {numeroCartao} deve ser substituído pelo numero do cartão.
+
+### Possíveis respostas:
+#### Sucesso
+Http Status `201`
+Body `495.15`
+
+#### Cartão não existe
+Http Status `404`
+Sem body
