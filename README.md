@@ -23,9 +23,7 @@ As autenticações são do tipo BASIC.
 - **Senha**: `password`
 - Todos os endpoints retornarão HTTP Status `401` caso não estejam autenticados.
 
-### Cartões
-
-#### Criar Cartão
+## Criar Cartão
 
 **[POST]** `http://localhost:8080/cartoes`
 
