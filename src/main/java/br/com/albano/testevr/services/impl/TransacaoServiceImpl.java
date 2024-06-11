@@ -21,7 +21,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
@@ -78,9 +77,9 @@ public class TransacaoServiceImpl implements TransacaoService {
     }
 
     private void validarSenha(String senha, String senhaInformada) {
-        if (!Objects.equals(senha, senhaInformada)) {
-            throw new TransacaoFalhouException(SENHA_INVALIDA.name());
-        }
+        Optional.of(senha)
+                .filter(senhaCorreta -> senhaCorreta.equals(senhaInformada))
+                .orElseThrow(() -> new TransacaoFalhouException(SENHA_INVALIDA.name()));
     }
 
 }
