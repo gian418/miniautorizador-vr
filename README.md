@@ -14,7 +14,7 @@ Regras de autorização:
 - **Controle de Concorrência**: Para garantir a consistência dos dados durante as transações, o método `salvar` foi anotado com `@Transactional`. Isso assegura que todo o acesso ao banco de dados durante a transação ocorra em uma única transação.
 - **Lock na Tabela de Saldo**: Além do `@Transactional`, foi adicionado um lock na tabela de saldo para evitar acessos concorrentes ao saldo do cartão. É reconhecido que isso pode causar problemas de lock no banco de dados.
 - **Processamento Síncrono**: Considerou-se a implementação de uma fila para processamento de transações. No entanto, como é necessário fornecer uma resposta imediata na maquininha, optou-se por um processo síncrono.
-
+- **Padrão de Projeto**: Durante o processo de realização de uma transação, são realizadas diversas validações. Por uma questão de simplicidade, optei por não introduzir uma complexidade adicional. No entanto, uma abordagem alternativa seria a aplicação do padrão Chain of Responsibility. Nesse padrão, cada validação seria encapsulada em uma classe separada e encadeada com as demais até o ponto de persistência dos dados. Isso proporcionaria uma estrutura mais flexível e escalável para lidar com as diferentes etapas de validação. Caso precisar adicionar uma validação adicional futura, seria só adicionar mais uma classe com esse encapsulamento no meio da corrente de validações.
 ## Versões utilizadas
 - Java 21
 - Spring Boot 3.3.0
@@ -38,6 +38,7 @@ mvn spring-boot:run
 A cobertura atingiu 100%. Todos os testes foram escritos para validar as regras de negócio e verificar se os resultados estão de acordo com o esperado.
 
 Após executar o comando mvn clean install, você pode acessar o relatório do JaCoCo no arquivo `index.html`. Este arquivo está localizado no diretório `target/site`, partindo da raiz do projeto. O relatório fornecerá uma visão detalhada da cobertura de código do projeto.
+
 ## Endpoints
 
 As autenticações são do tipo BASIC.
